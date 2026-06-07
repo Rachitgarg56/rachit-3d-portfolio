@@ -1,4 +1,4 @@
-# Rachit Garg — 3D Portfolio
+# Rachit Garg — 3D Portfolio [Hosted Link](https://rachit-3d-portfolio.vercel.app/)
 
 An interactive 3D portfolio website built with Next.js, React Three Fiber, TypeScript, Tailwind CSS, and Framer Motion.
 
