@@ -15,6 +15,15 @@ interface ProjectScreenProps {
   isActive: boolean;
 }
 
+type ProjectData = {
+  title: string;
+  subtitle: string;
+  metrics: string[];
+  color: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+};
+
 function ProjectScreen({
   title,
   subtitle,
@@ -55,10 +64,7 @@ function ProjectScreen({
           document.body.style.cursor = 'default';
         }}
       >
-        <RoundedBox
-          args={[2.4, 1.6, 0.08]}
-          radius={0.05}
-        >
+        <RoundedBox args={[2.4, 1.6, 0.08]} radius={0.05}>
           <meshStandardMaterial
             color="#0f172a"
             metalness={0.7}
@@ -70,7 +76,7 @@ function ProjectScreen({
           <planeGeometry args={[2.2, 1.4]} />
           <meshStandardMaterial
             color="#020617"
-            emissive={color}
+            emissive={new THREE.Color(color)}
             emissiveIntensity={
               hovered || isActive ? 0.35 : 0.15
             }
@@ -98,11 +104,7 @@ function ProjectScreen({
         {metrics.map((metric, idx) => (
           <group
             key={metric}
-            position={[
-              0,
-              0.08 - idx * 0.22,
-              0.06,
-            ]}
+            position={[0, 0.08 - idx * 0.22, 0.06]}
           >
             <mesh>
               <planeGeometry args={[1.7, 0.12]} />
@@ -144,17 +146,13 @@ export default function ProjectScreens({
 }: {
   isActive: boolean;
 }) {
-  const projects = [
+  const projects: ProjectData[] = [
     {
       title: 'Asset Management',
       subtitle: 'Enterprise Workflow System',
       color: '#14b8a6',
       position: [-3.2, 0.2, 0],
-      rotation: [0, 0.35, 0] as [
-        number,
-        number,
-        number
-      ],
+      rotation: [0, 0.35, 0],
       metrics: [
         'Role-Based Access',
         'Approval Workflows',
@@ -166,11 +164,7 @@ export default function ProjectScreens({
       subtitle: 'High Traffic Production Site',
       color: '#f59e0b',
       position: [0, 0.5, 1],
-      rotation: [0, 0, 0] as [
-        number,
-        number,
-        number
-      ],
+      rotation: [0, 0, 0],
       metrics: [
         'SEO: 95',
         'Accessibility: 96',
@@ -182,11 +176,7 @@ export default function ProjectScreens({
       subtitle: 'Frontend & Deployment',
       color: '#60a5fa',
       position: [3.2, -0.2, 0],
-      rotation: [0, -0.35, 0] as [
-        number,
-        number,
-        number
-      ],
+      rotation: [0, -0.35, 0],
       metrics: [
         'Jekyll + Liquid',
         'AWS Deployment',
